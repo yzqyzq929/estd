@@ -1,1 +1,1 @@
-# NewRepo
+Extend C++ Strand Library.
