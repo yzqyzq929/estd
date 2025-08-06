@@ -38,7 +38,7 @@ namespace estd {
 	}
 
 	inline void infnum::flip() {
-		this->_is_positive = -!this->_is_positive;
+		this->_is_positive = !this->_is_positive;
 	}
 
 	bool infnum::_is_num(const std::string _str) {
@@ -108,4 +108,5 @@ namespace estd {
 		return _uid(_dre);
 	}
 }
+
 #endif /*__ESTD_MATH_CPP__*/
