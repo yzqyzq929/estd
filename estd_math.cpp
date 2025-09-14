@@ -38,7 +38,7 @@ namespace estd {
 	}
 
 	inline void infnum::flip() {
-		this->_is_positive = !this->_is_positive;
+		this->_is_positive = -!this->_is_positive;
 	}
 
 	bool infnum::_is_num(const std::string _str) {
@@ -51,22 +51,23 @@ namespace estd {
 		infnum res{};
 
 		if (_str.at(0) == '-') {
-			res = -res;
-			_str = _str.substr(1, ios_base::end);
+			res.flip();
+			_str = _str.substr(1, std::ios_base::end);
 		}
 
 		//Handle lead little number "byte".
 		size_t le = _str.size() % res.byte_size; //Lead num size.
 		if (le) {
 			res._val.push_back(
-				std::atoll(_str.substr(ios_base::beg, le).c_str())
+				std::atoll(_str.substr(std::ios_base::beg, le).c_str())
 			);
-			_str = _str.substr(le, ios_base::end);
+			_str = _str.substr(le,std::ios_base::end);
 		}
 
 		for (size_t _n = 1; _str.empty(); ++_n) {
 			
 		}
+
 	}
 
 	//Define calculation operator function
@@ -108,5 +109,4 @@ namespace estd {
 		return _uid(_dre);
 	}
 }
-
 #endif /*__ESTD_MATH_CPP__*/

@@ -1,6 +1,17 @@
+/*
+*   这是个扩展std标准库中的数学库
+*	编写 : yzq
+*	版权所有
+* 
+*	This is a math sub-library of extend stand library.
+*	Writer : yzq
+*   All right reserved.
+* 
+*/
+
 #pragma once
+
 #include<vector>
-#include<iostream>
 #include<sstream>
 #include<string>
 #include<random>
@@ -10,24 +21,25 @@
 namespace estd {
 
 //Some useful mini-tools.
-// 
- //template function max
+
+ //template function max.
+  //1 arg.
  template<class _T>
  constexpr _T max(const _T& _a) {
 	 return _a;
  }
-
+  //2 args.
  template<class _T>
  constexpr _T max(const _T& _a, const _T& _b) {
 	 return (_a > _b) ? _a : _b;
  }
-
+   //3 args or more.
  template<class _T,class... _Args>
  constexpr _T max(const _T& _a, const _T& _b, const _Args&... _args) {
 	 return max(max(_a, _b), _args...);
  }
 
- //template function min
+ //template function min (the same of max)
  template<class _T>
  constexpr _T min(const _T& _a) {
 	 return _a;
@@ -42,16 +54,34 @@ namespace estd {
  constexpr _T min(const _T& _a, const _T& _b,const Args&... _args) {
 	 return min(min(_a, _b), _args...);
  }
- //Infinte number calculate.
- 
+
+ /*
+ *  class infnum.
+ *	Infinte number calculate.
+ */
  class infnum {
  public:
 	 using byte_type = unsigned long long;
 	 using number_type = std::vector<byte_type>;
 	 using decimal_type = double;
+	 
+	 /*
+	 * member infnum::byte_size
+	 * size of byte.
+	 */
 	 constexpr static size_t byte_size = 
-		 std::numeric_limits<byte_type>::digits10;
-	                                  //+1 cause char + - cost a bit.
+		 std::numeric_limits<byte_type>::digits10;   //+1 cause char + - cost a bit.
+	 
+	 /*construction function infnum::infnum
+	 * 
+	 * All details initialization coonstruction special.
+	 * args:
+	 * const number_type&  = {}      Integer part.
+	 * const decimal_type& = 0       Decimal part.
+	 * bool                = true    Is positive.
+	 * 
+	 * 
+	 */
 	 infnum(const number_type& _n = {},
 		 const decimal_type& _d = 0,
 		 bool _is = true);
@@ -66,6 +96,7 @@ namespace estd {
 
 	 friend number_type str_to_vec(std::string);
 
+	 //friend operator function.
 	 friend infnum operator+(const infnum&, const infnum&);
 	 friend infnum operator-(const infnum&, const infnum&);
 	 friend infnum operator*(const infnum&, const infnum&);
