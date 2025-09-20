@@ -1,7 +1,7 @@
 /*
-*   ÕâÊÇ¸öÀ©Õ¹std±ê×¼¿âÖĞµÄ¾«¼òÊä³ö¿â
-*	±àĞ´ : yzq
-*	°æÈ¨ËùÓĞ
+*   è¿™æ˜¯ä¸ªæ‰©å±•stdæ ‡å‡†åº“ä¸­çš„ç²¾ç®€è¾“å‡ºåº“
+*	ç¼–å†™ : yzq
+*	ç‰ˆæƒæ‰€æœ‰
 *
 *	This is a output sub-library of extend stand library.
 *	Writer : yzq
@@ -12,41 +12,41 @@
 
 /*
  *  If user's platform have __builtin_* function, 
- *  platform will define @__ESTD__HAS_BUILTIN_FUNCTION__.
+ *  platform will define __ESTD__HAS_BUILTIN_FUNCTION__.
  *  Else don't define it, and this file won't define @estd::ostream.
 */
 #ifdef __has_builtin
 
 namespace estd {
 	/*
-	* class @endl_type
-	* Helper @ostream to endl.
+	* class endl_type
+	* Helper ostream to endl.
 	*/
 	class endl_type {
 	};
 
 	/*
-	* @endl_type @endl
+	* endl_type endl
 	* Use for ostream::operator<<(endl_type) to endl.
 	*/
 	constexpr endl_type endl{};
 
 
 	/*
-	* class @ostream
-	* Use __builtin_printf to output, won't use f**k stand @std::ostream
+	* class ostream
+	* Use __builtin_printf to output, won't use f**k stand std::ostream
 	*/
 	class ostream {
 	public:
 		using char_type = char;
-		//No more..
+		//No more.
 
 		ostream() const{
 		}
 		ostream(const ostream&) = delete;
 		ostream(ostream&&) = default;
 
-		//Output operator function(No @std::string or wchar_t or char16_t or char32_t)
+		//Output operator function(No std::string or wchar_t or char16_t or char32_t)
 		ostream operator<<(unsigned short);
 		ostream operator<<(short);
 		ostream operator<<(signed short);
@@ -70,9 +70,10 @@ namespace estd {
 		ostream operator<<(endl_type);
 	};
 
-	//Extern @ostream @cout. Know that all know.
+	//Extern ostream cout. Know that all know.
 	extern ostream cout;
 }
 
 #include"estd_ostream.cpp"
+
 #endif
